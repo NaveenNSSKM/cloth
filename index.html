@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEO-CLOTHS | Futuristic Apparel</title>
+    <meta name="description" content="Experience the future of fashion with NEO-CLOTHS. Unique, futuristic designs for the modern explorer.">
+    <!-- Resource Hints & Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="style.css">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Asynchronous Google Fonts Loading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Roboto+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Roboto+Mono:wght@400;500&display=swap">
+    </noscript>
+</head>
+<body>
+
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
+   
+
+    <header>
+        <div class="logo-container">
+            <a href="#"><img src="new-logo.png" alt="NEO-CLOTHS Logo" id="header-logo" width="180" height="40" fetchpriority="high"></a>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#home" class="nav-link active">HOME</a></li>
+                <li><a href="#t-shirts" class="nav-link">T-SHIRTS</a></li>
+                <li><a href="#hoodies" class="nav-link">HOODIES</a></li>
+                <li><a href="#customize" class="nav-link">CUSTOM DESIGNS</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Nav -->
+    <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+    <nav class="mobile-drawer" id="mobile-drawer">
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">✕</button>
+        <div class="drawer-header">
+            <img src="new-logo.png" alt="NEO-CLOTHS Logo" class="drawer-logo" height="35">
+        </div>
+        <div class="drawer-links">
+            <a href="#home" class="drawer-link active">HOME</a>
+            <a href="#t-shirts" class="drawer-link">T-SHIRTS</a>
+            <a href="#hoodies" class="drawer-link">HOODIES</a>
+            <a href="#customize" class="drawer-link">CUSTOM DESIGNS</a>
+        </div>
+        <div class="drawer-footer">
+            <p>&copy; 2026 NEO-CLOTHS</p>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Gallery -->
+        <div class="gallery-container">
+
+            <!-- Section 1: Home / New Arrivals -->
+            <div class="section-header" id="home">
+                <div class="section-label">
+                    <span class="section-number">01</span>
+                    <span class="section-line"></span>
+                    <span class="section-tag">NEW ARRIVALS</span>
+                </div>
+                <h2 class="section-title-text">NEW <br><span class="text-gradient">ARRIVALS</span></h2>
+                <p class="section-desc">The freshest technical and collaborative drops of the season.</p>
+            </div>
+
+            <div class="product-grid" id="new-arrivals-grid">
+                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING FRESH DROPS...</div>
+            </div>
+
+            <!-- Section 2: T-Shirts -->
+            <div class="section-header" id="t-shirts">
+                <div class="section-label">
+                    <span class="section-number">02</span>
+                    <span class="section-line"></span>
+                    <span class="section-tag">T-SHIRTS</span>
+                </div>
+                <h2 class="section-title-text">LATEST <br><span class="text-gradient">T-SHIRTS</span></h2>
+                <p class="section-desc">Smart fabric meets streetwear. Engineered for the future.</p>
+            </div>
+
+            <div class="product-grid" id="tshirts-grid">
+                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING T-SHIRTS...</div>
+            </div>
+
+            <!-- Section 3: Hoodies -->
+            <div class="section-header" id="hoodies">
+                <div class="section-label">
+                    <span class="section-number">03</span>
+                    <span class="section-line"></span>
+                    <span class="section-tag">HOODIES</span>
+                </div>
+                <h2 class="section-title-text">LATEST <br><span class="text-gradient">HOODIES</span></h2>
+                <p class="section-desc">Thermal layers with cybernetic aesthetics. Built to perform.</p>
+            </div>
+
+            <div class="product-grid" id="hoodies-grid">
+                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING HOODIES...</div>
+            </div>
+
+            <!-- Section 4: Customized T-Shirts -->
+            <div class="section-header" id="customize">
+                <div class="section-label">
+                    <span class="section-number">04</span>
+                    <span class="section-line"></span>
+                    <span class="section-tag">CUSTOM DESIGN</span>
+                </div>
+                <h2 class="section-title-text">CUSTOMIZED <br><span class="text-gradient">T-SHIRTS</span></h2>
+                <p class="section-desc">Futuristic graphics and limited-run customized collaboration drops.</p>
+            </div>
+
+            <div class="product-grid" id="custom-designs-grid">
+                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING CUSTOM CREATIONS...</div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="new-logo.png" alt="NEO-CLOTHS Logo" id="footer-logo" width="160" height="35" loading="lazy">
+                <p>Redefining the boundaries of apparel through technology and visionary design. Join the evolution.</p>
+            </div>
+            
+            <div class="footer-center">
+                <div class="footer-info-block">
+                    <h4>LOCATION</h4>
+                    <p>Cyber Hub 4, Floor 22</p>
+                    <p>Neo Tokyo, District 7</p>
+                    <p>Japan - 150-0001</p>
+                </div>
+                <div class="footer-info-block">
+                    <h4>CONTACT</h4>
+                    <p>Email: <a href="mailto:contact@neo-cloths.tech">contact@neo-cloths.tech</a></p>
+                    <p>Phone: +81 (0) 3 1234 5678</p>
+                    <p>Support: 24/7 Virtual Assistant</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 NEO-CLOTHS. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="product-modal">
+            <button class="modal-close" id="modal-close">✕</button>
+            <div class="modal-image">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <div class="modal-meta" id="modal-meta"></div>
+                <h2 id="modal-title"></h2>
+                <p id="modal-desc"></p>
+                <div class="modal-price" id="modal-price"></div>
+                <button class="modal-add-btn">ADD TO BAG</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="main.js"></script>
+</body>
+</html>
