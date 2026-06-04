@@ -1,4 +1,4 @@
-/* global process */
+/* global supabase, process */
 document.addEventListener('DOMContentLoaded', () => {
     // Supabase Configuration
     const SUPABASE_URL = (typeof process !== 'undefined' && process?.env?.NEXT_PUBLIC_SUPABASE_URL) 
@@ -8,30 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize Supabase Client
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    // 1. Floating Particles System
-    const createParticles = () => {
-        const particlesContainer = document.getElementById('particles');
-        if (!particlesContainer) return;
-        const particleCount = 20;
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            particle.style.left = `${Math.random() * 100}vw`;
-            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
-            particle.style.animationDelay = `${Math.random() * -20}s`;
-            
-            const size = Math.random() * 3 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.opacity = Math.random() * 0.5 + 0.1;
-            
-            particlesContainer.appendChild(particle);
-        }
-    };
-    createParticles();
 
     // 2. Animated Stats Counter
     const animateStats = () => {
