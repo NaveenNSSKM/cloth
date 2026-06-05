@@ -1598,6 +1598,201 @@ footer,
 }
 footer {
     contain-intrinsic-size: auto 400px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.customizer-input:focus {
+    border-color: var(--accent-blue);
+    background: rgba(99, 102, 241, 0.03);
+}
+
+.control-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.customizer-select {
+    width: 100%;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.customizer-select:focus {
+    border-color: var(--accent-blue);
+}
+
+.customizer-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    outline: none;
+    cursor: pointer;
+}
+
+.customizer-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    transition: transform 0.1s ease;
+}
+
+.customizer-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.upgrade-checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+.checkbox-container:hover {
+    color: #fff;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.customizer-pricing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 25px;
+    margin-top: 10px;
+}
+
+.pricing-label {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.pricing-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.custom-bag-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 100px;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.custom-bag-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .customizer-container {
+        flex-direction: column;
+        padding: 30px;
+        gap: 40px;
+    }
+}
+
+/* Rendering containment performance optimizations */
+.product-grid,
+footer,
+.customizer-container {
+    content-visibility: auto;
+}
+.product-grid {
+    contain-intrinsic-size: auto 550px;
+}
+footer {
+    contain-intrinsic-size: auto 400px;
 }
 .customizer-container {
     contain-intrinsic-size: auto 600px;
@@ -1606,12 +1801,21 @@ footer {
 /* Skeleton Card Loader */
 .skeleton-card {
     height: 380px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
-    background-size: 200% 100%;
-    animation: loadingShimmer 1.5s infinite;
+    background: rgba(255,255,255,0.03);
+    position: relative;
+    overflow: hidden;
     border-radius: 24px;
 }
+.skeleton-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    animation: loadingShimmer 1.5s infinite;
+}
 @keyframes loadingShimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    100% { transform: translateX(200%); }
 }

@@ -199,16 +199,15 @@ Hi, I would like to check the availability of this product.`;
                 // Format price as Indian Rupees (e.g. ₹799)
                 const formattedPrice = `₹${parseFloat(product.price).toLocaleString('en-IN')}`;
 
-                cardsRendered++;
-                const isLcp = cardsRendered <= 3;
+                const isLcp = targetGrid.children.length === 0; // First item in any grid is eager
                 const imgLoading = isLcp ? 'eager' : 'lazy';
                 const imgFetchPriority = isLcp ? ' fetchpriority="high"' : '';
                 
                 let optimizedImageSrc = product.image;
                 if (optimizedImageSrc && optimizedImageSrc.includes('/object/sign/')) {
-                    optimizedImageSrc = optimizedImageSrc.replace('/object/sign/', '/render/image/sign/') + '&width=600&quality=80&format=webp';
+                    optimizedImageSrc = optimizedImageSrc.replace('/object/sign/', '/render/image/sign/') + '&width=400&quality=60&format=webp';
                 } else if (optimizedImageSrc && optimizedImageSrc.includes('/object/public/')) {
-                    optimizedImageSrc = optimizedImageSrc.replace('/object/public/', '/render/image/public/') + '?width=600&quality=80&format=webp';
+                    optimizedImageSrc = optimizedImageSrc.replace('/object/public/', '/render/image/public/') + '?width=400&quality=60&format=webp';
                 }
 
                 card.innerHTML = `
