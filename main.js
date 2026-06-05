@@ -171,11 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageSrc = modalImg.src || '';
 
             const phoneNumber = '919790486506';
-            const message = `Hello, I'm interested in buying this product:
-
-*Product:* ${title}
-*Price:* ${price}
-*Image:* ${imageSrc}`;
+            const message = `🛍️ *NEW INQUIRY - NEO CLOTHS*
+----------------------------------
+👕 *Product Name:* ${title}
+💰 *Price:* ${price}
+🖼️ *Product Image:* ${imageSrc}
+----------------------------------
+Hi, I would like to check the availability of this product.`;
 
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
@@ -321,11 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const imageSrc = imageEl ? imageEl.src : '';
                     
                     const phoneNumber = '919790486506';
-                    const message = `Hello, I'm interested in buying this product:
-
-*Product:* ${title}
-*Price:* ${price}
-*Image:* ${imageSrc}`;
+                    const message = `🛍️ *NEW INQUIRY - NEO CLOTHS*
+----------------------------------
+👕 *Product Name:* ${title}
+💰 *Price:* ${price}
+🖼️ *Product Image:* ${imageSrc}
+----------------------------------
+Hi, I would like to check the availability of this product.`;
                     
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                     window.open(whatsappUrl, '_blank');
