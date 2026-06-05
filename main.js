@@ -1,13 +1,7 @@
 /* global supabase, process */
 document.addEventListener('DOMContentLoaded', () => {
-    // Supabase Configuration
-    const SUPABASE_URL = (typeof process !== 'undefined' && process?.env?.NEXT_PUBLIC_SUPABASE_URL) 
-        || 'https://llcenvrwkhbalrkkeihd.supabase.co';
-    const SUPABASE_KEY = (typeof process !== 'undefined' && process?.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY) 
-        || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxsY2VudnJ3a2hiYWxya2tlaWhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1Njc1MTMsImV4cCI6MjA5NjE0MzUxM30.oGbrSx1p6ue9U0ZcnaEmsmoq_d2-OQEigYqy5RAwVQA';
-    
-    // Initialize Supabase Client
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // Backend API Integration
+    const API_URL = '/api/products';
 
     // 3. Header Scroll Effect
     const header = document.querySelector('header');
@@ -144,15 +138,14 @@ Hi, I would like to check the availability of this product.`;
 
     // 7. Entrance Animations Removed for Performance
 
-    // 8. Dynamic Supabase Rendering & Event Binding
+    // 8. Dynamic Backend Rendering & Event Binding
     const fetchAndRenderProducts = async () => {
         try {
-            const { data: products, error } = await supabaseClient
-                .from('products')
-                .select('*')
-                .order('id', { ascending: true });
-
-            if (error) throw error;
+            const response = await fetch(API_URL);
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            const products = await response.json();
             if (!products || products.length === 0) {
                 console.warn("No products found in Supabase.");
                 return;
