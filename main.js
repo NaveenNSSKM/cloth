@@ -164,12 +164,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     });
 
+    const getCleanImageUrl = (url) => {
+        if (!url) return '';
+        if (url.includes('/sign/')) {
+            return url.replace('/sign/', '/public/').split('?')[0];
+        }
+        return url;
+    };
+
     const modalWhatsappBtn = document.querySelector('.modal-whatsapp-btn');
     if (modalWhatsappBtn) {
         modalWhatsappBtn.addEventListener('click', () => {
             const title = modalTitle.textContent || 'Product';
             const price = modalPrice.textContent || '';
-            const imageSrc = modalImg.src || '';
+            const imageSrc = getCleanImageUrl(modalImg.src || '');
 
             const phoneNumber = '919790486506';
             const message = `Hello, I'm interested in buying this product:
@@ -319,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'Product';
                     const price = card.querySelector('.price-tag') ? card.querySelector('.price-tag').textContent : '';
                     const imageEl = card.querySelector('img');
-                    const imageSrc = imageEl ? imageEl.src : '';
+                    const imageSrc = getCleanImageUrl(imageEl ? imageEl.src : '');
                     
                     const phoneNumber = '919790486506';
                     const message = `Hello, I'm interested in buying this product:
