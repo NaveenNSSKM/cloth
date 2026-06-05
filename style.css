@@ -769,6 +769,44 @@ main {
     transform: scale(1.08);
 }
 
+.whatsapp-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 5;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.product-image:hover .whatsapp-overlay {
+    opacity: 1;
+}
+
+.whatsapp-overlay svg {
+    width: 38px;
+    height: 38px;
+    fill: #25D366;
+    margin-bottom: 12px;
+    transform: translateY(15px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-image:hover .whatsapp-overlay svg {
+    transform: translateY(0);
+}
+
 .product-info {
     padding: 25px;
     position: relative;
@@ -954,6 +992,37 @@ main {
 .modal-add-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+.modal-whatsapp-btn {
+    padding: 16px 36px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+    background: #20ba59;
+}
+
+.modal-whatsapp-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
 }
 
 /* Footer Styles */
