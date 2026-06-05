@@ -9,55 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Supabase Client
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // 2. Animated Stats Counter
-    const animateStats = () => {
-        const stats = document.querySelectorAll('.stat-number');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'), 10);
-                    let current = 0;
-                    const duration = 1500;
-                    const increment = target / (duration / 16);
-                    
-                    const updateCounter = () => {
-                        current += increment;
-                        if (current < target) {
-                            entry.target.textContent = Math.floor(current);
-                            requestAnimationFrame(updateCounter);
-                        } else {
-                            entry.target.textContent = target;
-                        }
-                    };
-                    
-                    updateCounter();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        stats.forEach(stat => observer.observe(stat));
-    };
-    animateStats();
-
     // 3. Header Scroll Effect
     const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.top = '10px';
-            header.style.width = '95%';
-            header.style.height = '60px';
-            header.style.background = 'rgba(10, 10, 10, 0.95)';
-            header.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
-        } else {
-            header.style.top = '52px';
-            header.style.width = '90%';
-            header.style.height = '70px';
-            header.style.background = 'rgba(10, 10, 10, 0.6)';
-            header.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.3)';
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+    }
 
     // 4. ScrollSpy and Navigation Active States
     const sectionHeaders = document.querySelectorAll('.section-header, .hero-section');
@@ -184,23 +142,7 @@ Hi, I would like to check the availability of this product.`;
         });
     }
 
-    // 7. Entrance Animations Observer
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    const styleSheet = document.createElement("style");
-    styleSheet.innerText = `
-        .product-card.visible, .section-header.visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(styleSheet);
+    // 7. Entrance Animations Removed for Performance
 
     // 8. Dynamic Supabase Rendering & Event Binding
     const fetchAndRenderProducts = async () => {
@@ -227,6 +169,8 @@ Hi, I would like to check the availability of this product.`;
             if (tshirtsGrid) tshirtsGrid.innerHTML = '';
             if (hoodiesGrid) hoodiesGrid.innerHTML = '';
             if (customDesignsGrid) customDesignsGrid.innerHTML = '';
+
+            let cardsRendered = 0;
 
             products.forEach(product => {
                 let targetGrid = null;
@@ -262,10 +206,22 @@ Hi, I would like to check the availability of this product.`;
                 // Format price as Indian Rupees (e.g. ₹799)
                 const formattedPrice = `₹${parseFloat(product.price).toLocaleString('en-IN')}`;
 
+                cardsRendered++;
+                const isLcp = cardsRendered <= 3;
+                const imgLoading = isLcp ? 'eager' : 'lazy';
+                const imgFetchPriority = isLcp ? ' fetchpriority="high"' : '';
+                
+                let optimizedImageSrc = product.image;
+                if (optimizedImageSrc && optimizedImageSrc.includes('/object/sign/')) {
+                    optimizedImageSrc = optimizedImageSrc.replace('/object/sign/', '/render/image/sign/') + '&width=600&quality=80&format=webp';
+                } else if (optimizedImageSrc && optimizedImageSrc.includes('/object/public/')) {
+                    optimizedImageSrc = optimizedImageSrc.replace('/object/public/', '/render/image/public/') + '?width=600&quality=80&format=webp';
+                }
+
                 card.innerHTML = `
                     ${badgeHTML}
                     <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" width="400" height="380" loading="lazy">
+                        <img src="${optimizedImageSrc}" alt="${product.name}" width="400" height="380" loading="${imgLoading}"${imgFetchPriority}>
                         <div class="whatsapp-overlay">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.59 1.977 14.113.953 11.487.953c-5.43 0-9.854 4.371-9.858 9.799-.002 1.718.461 3.39 1.339 4.887L1.925 21.84l6.177-1.616c-.001 0-.001 0 0 0zm9.324-5.32c-.312-.156-1.848-.91-2.133-1.014-.286-.104-.494-.156-.702.156-.208.312-.806 1.014-.988 1.221-.182.208-.364.234-.676.078-.312-.156-1.317-.485-2.51-1.548-.928-.827-1.554-1.85-1.736-2.162-.182-.312-.02-.48.136-.635.14-.14.312-.364.468-.546.156-.182.208-.312.312-.52.104-.208.052-.39-.026-.546-.078-.156-.702-1.69-.961-2.313-.253-.607-.51-.524-.702-.534-.182-.01-.39-.01-.598-.01-.208 0-.546.078-.832.39-.286.312-1.092 1.066-1.092 2.6 0 1.534 1.118 3.016 1.274 3.224.156.208 2.19 3.344 5.304 4.69.741.32 1.319.51 1.77.653.745.237 1.423.203 1.959.123.598-.089 1.848-.755 2.107-1.444.259-.689.259-1.274.182-1.393-.078-.12-.286-.195-.598-.35z"/>
@@ -352,13 +308,6 @@ Hi, I would like to check the availability of this product.`;
             });
         });
 
-        // Entrance animation on scroll trigger
-        document.querySelectorAll('.product-card:not(.visible), .section-header:not(.visible)').forEach((el) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(40px)';
-            el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-            revealObserver.observe(el);
-        });
     };
 
     // 9. Mobile Slide-out Drawer Menu

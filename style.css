@@ -728,16 +728,10 @@ main {
     letter-spacing: 2px;
     border-radius: 100px;
     z-index: 10;
-    animation: badge-glow 2s ease infinite;
 }
 
 .product-badge.hot {
     background: linear-gradient(135deg, #f97316, #ef4444);
-}
-
-@keyframes badge-glow {
-    0%, 100% { box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.3); }
-    50% { box-shadow: 0 0 20px rgba(var(--accent-cyan-rgb), 0.6); }
 }
 
 .product-image {
@@ -1609,3 +1603,15 @@ footer {
     contain-intrinsic-size: auto 600px;
 }
 
+/* Skeleton Card Loader */
+.skeleton-card {
+    height: 380px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+    background-size: 200% 100%;
+    animation: loadingShimmer 1.5s infinite;
+    border-radius: 24px;
+}
+@keyframes loadingShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}

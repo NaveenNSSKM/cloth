@@ -8,16 +8,13 @@
     <!-- Resource Hints & Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="style.css">
+    <link rel="preconnect" href="https://llcenvrwkhbalrkkeihd.supabase.co">
     
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Asynchronous Google Fonts Loading -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Roboto+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Roboto+Mono:wght@400;500&display=swap">
-    </noscript>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Roboto+Mono:wght@400;500&display=swap">
 </head>
 <body>
 
@@ -49,7 +46,7 @@
     <nav class="mobile-drawer" id="mobile-drawer">
         <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">✕</button>
         <div class="drawer-header">
-            <img src="new-logo.png" alt="NEO-CLOTHS Logo" class="drawer-logo" height="35">
+            <img src="new-logo.png" alt="NEO-CLOTHS Logo" class="drawer-logo" width="158" height="35">
         </div>
         <div class="drawer-links">
             <a href="#home" class="drawer-link active">HOME</a>
@@ -78,7 +75,9 @@
             </div>
 
             <div class="product-grid" id="new-arrivals-grid">
-                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING FRESH DROPS...</div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
             </div>
 
             <!-- Section 2: T-Shirts -->
@@ -93,7 +92,9 @@
             </div>
 
             <div class="product-grid" id="tshirts-grid">
-                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING T-SHIRTS...</div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
             </div>
 
             <!-- Section 3: Hoodies -->
@@ -108,7 +109,9 @@
             </div>
 
             <div class="product-grid" id="hoodies-grid">
-                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING HOODIES...</div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
             </div>
 
             <!-- Section 4: Customized T-Shirts -->
@@ -123,7 +126,9 @@
             </div>
 
             <div class="product-grid" id="custom-designs-grid">
-                <div class="loading-spinner" style="grid-column: span 3; text-align: center; color: var(--text-secondary); font-family: 'Roboto Mono', monospace; padding: 40px;">LOADING CUSTOM CREATIONS...</div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
             </div>
 
         </div>
@@ -180,7 +185,7 @@
     </div>
 
     <!-- Supabase JS Client CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="main.js" defer></script>
 </body>
 </html>
